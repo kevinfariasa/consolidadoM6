@@ -1,0 +1,105 @@
+<section id="form" class="d-none text-light pb-5">
+    <div class="w-75 mx-auto">
+        <div class="text-center mx-auto">
+            <h2 class="text-center">Formulario de creación de animes.</h2>
+            <p class="pb-4">Ingresa todos los datos solicitados</p>          
+        </div>
+        <form class="w-50 text-start mx-auto pb-4" id="formCreateUser">
+            <label for="createNombre" class="form-label">Nombre</label>
+            <input values="" type="text" name="createNombre" id="createNombre" class="form-control" required>
+            <label for="createGenero" class="form-label">Género</label>
+            <input values="" type="text" name="createGenero" id="createGenero" class="form-control" required>
+            <label for="createAño" class="form-label">Año</label>
+            <input values="" type="text" name="createAño" id="createAño" class="form-control" required>
+            <label for="createAutor" class="form-label">Autor</label>
+            <input values="" type="text" name="createAutor" id="createAutor" class="form-control" required>
+            <input id="createForm" type="submit" value="Crear" class="btn my-2 d-block">
+            <input id="updateForm" type="submit" value="Actualizar" class="btn my-2 d-block">
+        </form>
+    </div>
+</section>
+
+<script>
+    let formCreateUser = document.getElementById('formCreateUser')
+    formCreateUser.addEventListener("submit", async (event) => {
+        event.preventDefault();               
+        let selector = event.submitter.id        
+        if (selector == "createForm") {
+            try {
+                const raw = JSON.stringify({
+                    "nombre": createNombre.value,
+                    "genero": createGenero.value,
+                    "año": createAño.value,
+                    "autor": createAutor.value
+                })
+
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                let response = await fetch("/animes", {
+                    method: "POST",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                });
+
+                let data = await response.json();
+                if (data.code == 201) {
+                    alert("Animé creado con éxito.")
+                    formCreateUser.reset();
+                    location.reload();
+                } else {
+                    throw new Error("Error al guardar los datos en la BD.")
+                }
+            } catch (error) {
+                alert(error.message)
+            }
+
+        } else if (selector == "updateForm") {            
+            try {
+                const raw = JSON.stringify({
+                    "id": id,
+                    "nombre": createNombre.value,
+                    "genero": createGenero.value,
+                    "año": createAño.value,
+                    "autor": createAutor.value
+                })                
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                let response = await fetch("/animes", {
+                    method: "PUT",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                });
+
+                let data = await response.json();
+                if (data.code == 200) {
+                    alert("Animé modificado con éxito.")
+                    formCreateUser.reset();
+                    location.reload();
+                } else {
+                    throw new Error("Error al modificar los datos en la BD.")
+                }
+            } catch (error) {
+                alert(error.message)
+            }
+        } else {
+            console.log('problemas')
+        }
+        })
+</script>
+
+<style>
+    #createForm, #updateForm{
+        background-color: rgb(226, 55, 140);
+        color: white;
+        text-align: center;
+        margin: 20px auto;
+    }
+    #createForm:hover, #updateForm:hover{
+        background-color: rgb(228, 145, 186);
+        color: black;
+    }
+</style>

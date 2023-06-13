@@ -1,0 +1,37 @@
+[
+    {
+        "nombre": "Akira",
+        "genero": "Seinen",
+        "año": "1988",
+        "autor": "Katsuhiro Otomo",
+        "id": "0"
+    },
+    {
+        "nombre": "Dragon Ball",
+        "genero": "Shonen",
+        "año": "1986",
+        "autor": "Akira Toriyama",
+        "id": "1"
+    },
+    {
+        "nombre": "Sailor Moon",
+        "genero": "Shojo",
+        "año": "1992",
+        "autor": "Naoko Takeuchi",
+        "id": "2"
+    },
+    {
+        "nombre": "Naruto",
+        "genero": "Shonen",
+        "año": "2002",
+        "autor": "Masashi Kishimoto",
+        "id": "3"
+    },
+    {
+        "id": "4",
+        "nombre": "Bleach",
+        "genero": "Shonen",
+        "año": "2001",
+        "autor": "Tite Kubo"
+    }
+]

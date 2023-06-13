@@ -1,0 +1,8 @@
+<h1>El animé que buscaste es:</h1>
+{{#if target}}
+    {{>tableId
+        data=target        
+    }}
+{{else}} 
+    <h2>No existe ID</h2>
+{{/if}}

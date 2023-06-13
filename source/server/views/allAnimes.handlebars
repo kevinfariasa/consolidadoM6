@@ -1,0 +1,19 @@
+<section>
+    {{#if target}}
+        {{>table
+            data=target
+        }}
+    {{else}}
+        <h2>Se produjo un error...</h2>
+    {{/if}}
+</section>
+<section>
+    {{#if target}}
+        {{>form
+            data=target
+        }}
+    {{else}}
+        <h2>Se produjo un error...</h2>
+    {{/if}}
+</section>
+
